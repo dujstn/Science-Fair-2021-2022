@@ -5,13 +5,16 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import GridSearchCV
 import matplotlib.pyplot as plt
+import os
 
-stock_data = pd.read_csv("Datasets/final_set.csv")
+
+stock_data = pd.read_csv("Science-Fair-2021-2022/Datasets/final_set.csv")
+print(len(stock_data))
 
 data = []
 
 for i in stock_data.values:
-    if i[8] == "Residential":
+    if i[8] == "Residential" and i[5] == "Ontario":
         data.append(i)
 df = pd.DataFrame(data)
 df.columns = [
@@ -52,9 +55,16 @@ df.columns = [
     "December",
 ]
 
-df_train = df.iloc[0 : math.floor(df.shape[0] / 2)]
-df_eval = df.iloc[(math.floor(df.shape[0] / 2)) : df.shape[0]]
+print(df.head())
 
+df_train = df.iloc[0 : math.floor(df.shape[0] / 3)]
+df_eval = df.iloc[(math.floor(df.shape[0] / 3)) : df.shape[0]]
+
+print(len(df_train))
+print(len(df_eval))
+print(len(df))
+print(df_train.iloc[0])
+print(df_eval.iloc[0])
 
 feats_train = df_train[["Latitude", "Longitude", "Total Capacity (MW)", "Annual"]]
 trainfeatlist = [list(row) for row in feats_train.values]
@@ -66,6 +76,7 @@ feats_eval = df_eval[["Latitude", "Longitude", "Total Capacity (MW)", "Annual"]]
 evalfeatlist = [list(row) for row in feats_eval.values]
 labels_eval = df_eval[["First Yr Annual (MWh)"]]
 evallabellist = [list(row) for row in labels_eval.values]
+
 
 model = KNeighborsRegressor()
 knn_grid = {"n_neighbors": np.arange(1, 10)}
@@ -107,5 +118,4 @@ predlist = [item for sublist in output for item in sublist]
 
 testlist = {"Actual": actuallist, "Prediction": predlist}
 testframe = pd.DataFrame(testlist)
-print(testframe.head())
 testframe.to_csv("check.csv")
