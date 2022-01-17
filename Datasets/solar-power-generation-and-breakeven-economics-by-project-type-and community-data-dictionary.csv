@@ -1,0 +1,34 @@
+CGNDB ID,The community's identification code in NRCan's Canadian Geographic Name Database
+Geographical Name,Community name
+Generic term,The type of community
+Province-Territory,The province or territory the community is located in
+Latitude,Latitude of the community
+Longitude,Longitude of the community
+Nearest NSRDB Latitude,The closest latitude in the National Solar Radiation Database
+Nearest NSRDB Longitude,The closest longitude in the National Solar Radiation Database
+Array Scale,The type of array modeled
+Residential,A solar project that would help power a home (5 kW)
+Commercial,A solar project that would help power a business (200 kW)
+Community,A solar project that would help power a community (200 kW)
+Utility fixed,A solar project whose panels are on fixed mounts and would sell power to the grid (50 MW)
+Utility tracker,A solar project whose panels are on tracker mounts and would sell power to the grid (50 MW)
+Market pricing,"How economic was modeled on an hourly basis, flat rate or time of use"
+Flat rate,"A fixed rate, which does not vary by time of day"
+Time of use,A changing rate that varies as demand rises and falls at different times of the day
+Utility-scale Tariff Applied,Whether provincial tariff costs are applied to utility-scale projects
+Tariff,Tariff is applied
+No Tariff,Tariff is not applied
+Total Capacity,The capacity of the project
+Annual Generation (MWh) - First Year,The amount of electricity generated in the project's first year
+Winter Generation (MWh) - First Year,The amount of electricity generated during the winter in the project's first year
+Spring Generation (MWh) - First Year,The amount of electricity generated during the spring in the project's first year
+Summer Generation (MWh) - First Year,The amount of electricity generated during the summer in the project's first year
+Fall Generation (MWh) - First Year,The amount of electricity generated during the fall in the project's first year
+Installation Cost Scenario,"The time period of the assumed installation costs, either now, the near future, or in a low-cost future"
+Current,The cost to install solar projects today
+Near-future,The cost to install solar projects in the near future as costs fall a modest amount
+Low-cost future,"The cost to install solar projects in a low-cost future, where costs fall even more over the long term"
+Breakeven Price ($/MWh),The solar project's breakeven price in dollars per megawatt-hour
+Reference Price ($/MWh),"The $/MW.h cost of purchasing electricty from the grid in the case of residential, commercial, and community projects. The price at which electricity currently sells at for utility-scale projects"
+Breakeven Price (¢/kWh),The solar project's breakeven price in cents per kilowatt-hour
+Reference Price (¢/kWh),"The ¢/kW.h cost of purchasing electricty from the grid in the case of residential, commercial, and community projects. The price at which electricity currently sells at for utility-scale projects"
