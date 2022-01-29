@@ -5,7 +5,7 @@ const Fetch = () => {
     const [data, setData] = useState([{}])
 
     useEffect(() => {
-        fetch("/testone").then(
+        fetch("/test").then(
             res => res.json()
         ).then(
             data => {
@@ -15,17 +15,15 @@ const Fetch = () => {
         )
     }, [])
 
+
     return (
-
         <div>
-
-            {typeof data.members === "undefined" ? (
-                <p>loading</p>
-            ):(
-                data.members.map((member, i) =>
-                <p key={i}>{member}</p>)
-            )}
-
+            {(typeof data.members === "undefined") ? (
+                <p>Loading...</p>
+            ) : (
+                data.members.map((member, i)=>
+                <p index={i}>{member}</p>)
+            )}           
         </div>
   );
 };

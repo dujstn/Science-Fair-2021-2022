@@ -6,7 +6,9 @@ const Form = () => {
         const lat = document.querySelector("#latInput");
         const long = document.querySelector("#longInput");
         const cap = document.querySelector("#capInput");
-        console.log(lat.value, long.value, cap.value)
+        console.log(lat.value)
+        console.log(long.value)
+        console.log(cap.value)
     }  
     return (
         <form className="form">
