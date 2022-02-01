@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-const Fetch = () => {
+const Samples = () => {
 
     const [data, setData] = useState([{}])
 
@@ -23,9 +23,9 @@ const Fetch = () => {
             ) : (
                 data.members.map((member, i)=>
                 <p index={i}>{member}</p>)
-            )}           
+            )}
         </div>
   );
 };
 
-export default Fetch;
+export default Samples;
