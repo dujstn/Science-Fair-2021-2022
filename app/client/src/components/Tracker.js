@@ -17,16 +17,27 @@ const Tracker = () => {
         cap.value = "";
     }
 
+    const clearOutput = (div) => {
+        if (div.firstChild){
+            div.removeChild(div.firstChild)
+        }
+    }
+
+
+    const outputDiv = document.createElement("div")
+    outputDiv.setAttribute("id", "outputID")
     const postInput = (e) =>{
         e.preventDefault();
+        clearOutput(outputDiv)
         const lat = document.querySelector("#latInput")
-        const output = document.createElement("div")
-        output.appendChild(<Submit i={lat} />)
+        const output = document.createTextNode(lat.value)
+        outputDiv.appendChild(output)
+        document.querySelector("#formID").appendChild(outputDiv)
 
     }
 
     return (
-        <div id>
+        <div id="formID">
             <form className="form" action="#" method="post" id="trackerForm">
                 <label className="label">Array Latitude</label>
                 <input type="text" id="latInput" placeholder="Latitude"></input><br></br>
