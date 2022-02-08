@@ -1,28 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 
-const Submit = () => {
+export function Submit(userText){
 
     const requestOps = {
         method:"POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            title: "Fetch POST Request Example"
+            reqTitle: "POST Request Test",
+            reqText: "hello",
+            reqSig: "signature"
         })
-
     }
-
-    const output = "";
-    fetch("/reqsol", requestOps).then(
+    let text = ""
+    fetch("/reqsolar", requestOps).then(
         response => {
-            output = response.json()
+            console.log("POST Request was " + response.statusText)
+            return response.json()
+        }).then(
+            data => {
+                console.log(data)
+                text = data.title   
         })
     
-
-    return(
-        <div>
-            <h1>{output}</h1>
-        </div>
-    );
+    return "hello"
 };
-
-export default Submit;
