@@ -1,55 +1,68 @@
-import React, { useState, useEffect } from 'react';
-import Button from "./Button";
-import Samples from "./Samples";
-import {Submit} from "./submit";
+import React, { useState} from "react";
+import { submit } from "./submit";
 
 const Tracker = () => {
-    const logInput = (e) => {
-        e.preventDefault();
-        const lat = document.querySelector("#latInput");
-        const long = document.querySelector("#longInput");
-        const cap = document.querySelector("#capInput");
-        console.log(lat.value)
-        console.log(long.value)
-        console.log(cap.value)
-        lat.value = "";
-        long.value = "";
-        cap.value = "";
+  const [result, setResult] = useState("Test");
+
+  const [lat, setLat] = useState(0);
+  const [long, setLong] = useState(0);
+  const [size, setSize] = useState(0);
+
+  const [result1, setResult1] = useState();
+  const [result2, setResult2] = useState();
+  const [isLoading, setIsLoading] = useState(false)
+
+  async function testFunction() {
+        setIsLoading(true)
+    const object = {
+      latitude: lat,
+      longitude: long,
+      arrSize: size,
+    };
+    const rawResult = await submit(object);
+
+    if (rawResult) {
+      setResult(rawResult.lat);
+      setResult1(rawResult.long);
+      setResult2(rawResult.size);
     }
+    setIsLoading(false)
+  }
 
-    const clearOutput = (div) => {
-        if (div.firstChild){
-            div.removeChild(div.firstChild)
-        }
-    }
+  console.log("hihasdf")
+  return (
+    <div className="flex flex-col">
+      <input
+        type="number"
+        className="border"
+        placeholder="Enter latitude"
+        onChange={(update) => setLat(update.target.value)}
+      />
+      <input
+        type="number"
+        className="border"
+        placeholder="Enter longitude"
+        onChange={(update) => setLong(update.target.value)}
+      />
+      <input
+        type="number"
+        className="border"
+        placeholder="Enter size"
+        onChange={(update) => setSize(update.target.value)}
+      />
 
-    const postInput = (e) =>{
-        const outputDiv = document.createElement("div")
-        outputDiv.setAttribute("id", "outputID")
-        e.preventDefault();
-        clearOutput(outputDiv)
-        const lat = document.querySelector("#latInput")
-        const pingBack = Submit(lat)
-        
-        const output = document.createTextNode(pingBack)
-        outputDiv.appendChild(output)
-        document.querySelector("#formID").appendChild(outputDiv)
-
-    }
-
-    return (
-        <div id="formID">
-            <form className="form" action="#" method="post" id="trackerForm">
-                <label className="label">Array Latitude</label>
-                <input type="text" id="latInput" placeholder="Latitude"></input><br></br>
-                <label className="label">Array Longitude</label>
-                <input type="text" id="longInput" placeholder="Longitude"></input><br></br>
-                <label className="label">Array Capacity</label>
-                <input type="text" id="capInput" placeholder="Capacity"></input><br></br>
-                <Button text="Submit" onClick = {postInput}/>
-            </form>
-            <Samples />
-        </div>
+      <button
+        onClick={() => {
+          testFunction();
+        }}
+      >
+        <a>hi</a>
+      </button>
+      {isLoading && <span>Loading...</span>}
+      <span>{result}</span>
+      <span>{result1}</span>
+      <span>{result2}</span>
+    </div>
   );
 };
 

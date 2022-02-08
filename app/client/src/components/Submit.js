@@ -1,26 +1,19 @@
 import {useState, useEffect} from 'react';
 
-export function Submit(userText){
+export const submit = async (data) => {
 
     const requestOps = {
         method:"POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            reqTitle: "POST Request Test",
-            reqText: "hello",
-            reqSig: "signature"
+            lat: data.latitude,
+            long: data.longitude,
+            size: data.arrSize
         })
     }
-    let text = ""
-    fetch("/reqsolar", requestOps).then(
-        response => {
-            console.log("POST Request was " + response.statusText)
-            return response.json()
-        }).then(
-            data => {
-                console.log(data)
-                text = data.title   
-        })
+    const response = await fetch("/reqsolar", requestOps)
+    const text = await response.json()
     
-    return "hello"
+    
+    return text
 };

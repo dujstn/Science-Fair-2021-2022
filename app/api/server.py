@@ -8,12 +8,14 @@ def members():
 
 @app.route("/reqsolar", methods=["POST"])
 def reqsolar():
-    reqData = request.get_json()
-    reqTitle = reqData["reqTitle"]
-    reqText = reqData["reqText"]
+    data = request.get_json()
+    lat = data["lat"]
+    long = data["long"]
+    size = data["size"]
     return {
-        "title": reqTitle,
-        "text" : reqText
+        "lat": lat,
+        "long" : long,
+        "size" : size
     }
     
 if __name__ == "__main__":
