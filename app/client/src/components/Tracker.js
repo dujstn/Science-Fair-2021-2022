@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from "./Button";
 import Samples from "./Samples";
-import Submit from "./Submit";
+import {Submit} from "./submit";
 
 const Tracker = () => {
     const logInput = (e) => {
@@ -23,14 +23,15 @@ const Tracker = () => {
         }
     }
 
-
-    const outputDiv = document.createElement("div")
-    outputDiv.setAttribute("id", "outputID")
     const postInput = (e) =>{
+        const outputDiv = document.createElement("div")
+        outputDiv.setAttribute("id", "outputID")
         e.preventDefault();
         clearOutput(outputDiv)
         const lat = document.querySelector("#latInput")
-        const output = document.createTextNode(lat.value)
+        const pingBack = Submit(lat)
+        
+        const output = document.createTextNode(pingBack)
         outputDiv.appendChild(output)
         document.querySelector("#formID").appendChild(outputDiv)
 
