@@ -1,4 +1,5 @@
 from flask import Flask, request
+import requests
 
 app = Flask(__name__)
 
@@ -12,10 +13,17 @@ def reqsolar():
     lat = data["lat"]
     long = data["long"]
     size = data["size"]
+
+
+    url = "http://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=DEMO_KEY&lat=40&lon=-105"
+    response = requests.get(f"{url}").json()
+    version = response["version"]
+
     return {
         "lat": lat,
         "long" : long,
-        "size" : size
+        "size" : size,
+        "apiversion": version
     }
     
 if __name__ == "__main__":
