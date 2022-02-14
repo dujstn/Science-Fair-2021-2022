@@ -2,34 +2,8 @@ body {
   font-family: Helvetica
 }
 
-.container{
+.flex-container{
   max-width: 500px;
-  margin: 30px
-}
-
-.btn{
-  color: white;
-  background-color: black;
-  font-family: inherit;
-  border: none;
-  border-radius: 5px;
-}
-
-.input{
-  font-family: inherit;
-  padding: 5px;
-  border-radius: 2px;
-}
-
-.form{
-  padding: 20px 20px;
-  border: 1px solid black;
-  border-radius: 10px
-}
-
-.label{
-  padding-right: 50px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-
+  display: flex;
+  flex-direction: column;
 }

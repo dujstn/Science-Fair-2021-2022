@@ -15,15 +15,15 @@ def reqsolar():
     size = data["size"]
 
 
-    url = "http://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=DEMO_KEY&lat=40&lon=-105"
+    url = "https://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=DEMO_KEY&lat=40&lon=-105"
     response = requests.get(f"{url}").json()
-    version = response["version"]
+    thing = response["outputs"]["avg_dni"]["annual"]
 
     return {
         "lat": lat,
         "long" : long,
         "size" : size,
-        "apiversion": version
+        "apiversion": thing
     }
     
 if __name__ == "__main__":

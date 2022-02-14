@@ -33,7 +33,7 @@ const Tracker = () => {
   }
 
   return (
-    <div className="flex">
+    <div className="flex-container">
       <input
         type="number"
         className="border"
