@@ -10,20 +10,26 @@ def members():
 @app.route("/reqsolar", methods=["POST"])
 def reqsolar():
     data = request.get_json()
-    lat = data["lat"]
-    long = data["long"]
+    lat = int(data["lat"])
+    longi = int(data["long"])
     size = data["size"]
 
 
-    url = "https://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=DEMO_KEY&lat=40&lon=-105"
+    url = "https://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key={}&lat={}&lon={}".format(
+        "7HM9Fa883Owuw2ejRANXaQumqJmUB0lzMDoafC3u",
+        lat,
+        longi
+    )
     response = requests.get(f"{url}").json()
-    thing = response["outputs"]["avg_dni"]["annual"]
+    version = response["version"]
+    dni = response["outputs"]["avg_dni"]["annual"]
 
     return {
         "lat": lat,
-        "long" : long,
+        "long" : longi,
         "size" : size,
-        "apiversion": thing
+        "apiversion": version,
+        "sampleDNI": dni
     }
     
 if __name__ == "__main__":
