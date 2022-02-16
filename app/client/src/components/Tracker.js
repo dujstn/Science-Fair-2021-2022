@@ -1,17 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { submit } from "./submit";
+import { onLoad } from "./onLoad";
 
 const Tracker = () => {
   const [lat, setLat] = useState(0);
   const [long, setLong] = useState(0);
   const [size, setSize] = useState(0);
   const [inso, setInso] = useState(0);
-  const [version, setVersion] = useState("No Version");
+  const [load, setLoad] = useState("Load Failed");
 
   const [result, setResult] = useState(0);
   const [result1, setResult1] = useState(0);
   const [result2, setResult2] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    console.log("DATA IS LOADING")
+    const data = onLoad()[0]
+    const status = onLoad()[1]
+    console.log("DATA LOADED")
+    if (status == true){
+      setLoad("Load success")
+    }
+  }, [])
 
   async function submitData() {
     setIsLoading(true);
@@ -23,12 +34,10 @@ const Tracker = () => {
     const rawResult = await submit(object);
 
     if (rawResult) {
-      // setResult(rawResult.lat);
-      // setResult1(rawResult.long);
-      // setResult2(rawResult.size);
-      // setVersion(rawResult.apiversion);
-      // setInso(rawResult.locDNI);
-      setInso(rawResult.success)
+      setResult(rawResult.lat);
+      setResult1(rawResult.long);
+      setResult2(rawResult.size);
+      setInso(rawResult.locDNI);
     }
     setIsLoading(false);
   }
@@ -66,8 +75,8 @@ const Tracker = () => {
       <span>Latitude Entered: {result}</span>
       <span>Longitude Entered: {result1}</span>
       <span>Array Size Entered: {result2}</span>
-      <span>API Version: {version}</span>
       <span>Average Annual DNI: {inso}</span>
+      <span>Dataset Load: {load}</span>
     </div>
   );
 };
