@@ -9,11 +9,8 @@ export const submit = async (data) => {
             size: data.arrSize
         })
     }
-    // const response = await fetch("/reqsolar", requestOps)
-    // const text = await response.json()
-    
-    const response = await fetch("/prep")
+    const response = await fetch("/reqsolar", requestOps)
     const text = await response.json()
-    
+
     return text
 };
