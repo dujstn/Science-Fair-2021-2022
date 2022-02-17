@@ -15,13 +15,14 @@ const Tracker = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    console.log("DATA IS LOADING")
-    const data = onLoad()[0]
-    const status = onLoad()[1]
-    console.log("DATA LOADED")
-    if (status == true){
+    async function tFunction(){
+      const response = await onLoad()
+      console.log(response, "JUSTIN")
+      if (response){
       setLoad("Load success")
-    }
+    }}
+    tFunction()
+    
   }, [])
 
   async function submitData() {

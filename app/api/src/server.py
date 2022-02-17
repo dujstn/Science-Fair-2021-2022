@@ -11,14 +11,12 @@ def reqsolar():
     longi = int(data["long"])
     size = data["size"]
 
-    url = "https://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key={}&lat={}&lon={}".format(
-        "7HM9Fa883Owuw2ejRANXaQumqJmUB0lzMDoafC3u",
+    url = "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=ALLSKY_SFC_SW_DNI&community=RE&longitude={}&latitude={}&format=JSON&start=2020&end=2020".format(
         lat,
         longi
     )
     response = requests.get(f"{url}").json()
-    version = response["version"]
-    dni = response["outputs"]["avg_dni"]["annual"]
+    dni = response["properties"]["parameter"]["ALLSKY_SFC_SW_DNI"]["202001"]
 
     text = model.testfunc()
 
@@ -26,8 +24,7 @@ def reqsolar():
         "lat": lat,
         "long" : longi,
         "size" : size,
-        "apiversion": version,
-        "locDNI": text
+        "locDNI": dni
     }
 
 @app.route("/prep")
