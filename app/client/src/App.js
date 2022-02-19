@@ -1,8 +1,8 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
-import Home from "./src/components/Home"
-import Tracker from "./src/components/Tracker"
-import Changelog from "./src/components/Changelog"
+import Home from "./components/Home"
+import Tracker from "./components/Tracker"
+import Changelog from "./components/Changelog"
 
 function App() {
   return (
