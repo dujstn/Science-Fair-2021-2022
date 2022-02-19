@@ -41,6 +41,11 @@ def makepred():
         "success": model.process(lat, long, size, inso)
     }
 
+@app.route("/test", methods=["GET", "POST"])
+def test():
+    return{
+        "test": "this is a test"
+    }
 
 if __name__ == "__main__":
     app.run(debug=True)
