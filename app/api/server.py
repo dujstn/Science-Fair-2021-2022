@@ -45,9 +45,9 @@ def makepred():
 def test():
     return "this is a test"
 
-@app.route("/")
+@app.route("/", methods=["GET"])
 def home():
-    return "you hvae reached the home page."
+    return "you have reached the home page."
 
 if __name__ == "__main__":
     app.run()
