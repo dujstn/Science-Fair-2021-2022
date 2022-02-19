@@ -1,4 +1,4 @@
-export const submit = async (data) => {
+export const predicts = async (data) => {
 
     const requestOps = {
         method:"POST",
@@ -6,15 +6,18 @@ export const submit = async (data) => {
         body: JSON.stringify({
             lat: data.latitude,
             long: data.longitude,
-            size: data.arrSize
+            size: data.arrSize,
+            inso: data.insolation
+
         })
     }
-    try{    
-        const response = await fetch("/reqinso", requestOps)
+    try{
+        const response = await fetch("/makepred", requestOps)
         const text = await response.json()
         return text
     }
     catch(err){
         return undefined
     }
-};
+
+}

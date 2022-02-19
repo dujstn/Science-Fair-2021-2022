@@ -4,33 +4,41 @@ import model
 
 app = Flask(__name__)
 
-@app.route("/reqsolar", methods=["POST"])
-def reqsolar():
+@app.route("/reqinso", methods=["POST"])
+def reqinso():
     data = request.get_json()
-    lat = int(data["lat"])
-    longi = int(data["long"])
-    size = data["size"]
+    lat = float(data["lat"])
+    long = float(data["long"])
+    size = float(data["size"])
 
     url = "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=ALLSKY_SFC_SW_DNI&community=RE&longitude={}&latitude={}&format=JSON&start=2020&end=2020".format(
-        lat,
-        longi
+        long,
+        lat
     )
     response = requests.get(f"{url}").json()
-    dni = response["properties"]["parameter"]["ALLSKY_SFC_SW_DNI"]["202001"]
-
-    text = model.testfunc()
+    dniList = []
+    for key, value in (response["properties"]["parameter"]["ALLSKY_SFC_SW_DNI"].items()):
+        dniList.append(value)
+    dni = sum(dniList)/len(dniList)
+    print(url)
 
     return {
         "lat": lat,
-        "long" : longi,
-        "size" : size,
-        "locDNI": dni
+        "long" : long,
+        "size": size,
+        "locInso": dni
     }
 
-@app.route("/prep")
-def prep():
+@app.route("/makepred", methods=["POST"])
+def makepred():
+    data = request.get_json()
+    lat = float(data["lat"])
+    long = float(data["long"])
+    size = float(data["size"])
+    inso = float(data["inso"])
+
     return {
-        "success": model.wakeup()
+        "success": model.process(lat, long, size, inso)
     }
 
 

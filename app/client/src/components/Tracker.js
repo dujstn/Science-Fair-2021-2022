@@ -1,29 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { submit } from "./submit";
-import { onLoad } from "./onLoad";
+import { predicts } from "./predicts";
 
 const Tracker = () => {
-  const [lat, setLat] = useState(0);
-  const [long, setLong] = useState(0);
-  const [size, setSize] = useState(0);
+  const [lat, setLat] = useState();
+  const [long, setLong] = useState();
+  const [size, setSize] = useState(0.005);
   const [inso, setInso] = useState(0);
-  const [load, setLoad] = useState("Load Failed");
+  const [load, setLoad] = useState("Not Loaded");
+  const [pred, setPred] = useState(0);
 
-  const [result, setResult] = useState(0);
-  const [result1, setResult1] = useState(0);
-  const [result2, setResult2] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    async function tFunction(){
-      const response = await onLoad()
-      console.log(response, "JUSTIN")
-      if (response){
-      setLoad("Load success")
-    }}
-    tFunction()
-    
-  }, [])
 
   async function submitData() {
     setIsLoading(true);
@@ -33,36 +21,36 @@ const Tracker = () => {
       arrSize: size,
     };
     const rawResult = await submit(object);
+    if (rawResult) {      
+      setInso(rawResult.locInso);
+      object.insolation = inso
 
-    if (rawResult) {
-      setResult(rawResult.lat);
-      setResult1(rawResult.long);
-      setResult2(rawResult.size);
-      setInso(rawResult.locDNI);
+      const response = await predicts(object);
+      if (response) {
+        setLoad("Load success");
+        setPred(response.success);
+      }
     }
     setIsLoading(false);
   }
   return (
     <div className="flex-container">
       <input
-        type="number"
-        className="border"
+        type="field"
+        className="field"
         placeholder="Enter latitude (-90 to 90)"
         onChange={(update) => setLat(update.target.value)}
       />
       <input
-        type="number"
-        className="border"
+        type="field"
+        className="field"
         placeholder="Enter longitude (-180 to 180)"
         onChange={(update) => setLong(update.target.value)}
       />
       <select onChange={(update) => setSize(update.target.value)}>
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="30">30</option>
-        <option value="40">40</option>
-        <option value="50">50</option>
-        <option value="60">60</option>
+        <option value="0.005">Residential (5kW)</option>
+        <option value="0.2">Community/Commercial (200kW)</option>
+        <option value="50">Utility (50MW)</option>
       </select>
 
       <button
@@ -70,14 +58,15 @@ const Tracker = () => {
           submitData();
         }}
       >
-        <a>hi</a>
+        <a>Submit</a>
       </button>
+      <span>Latitude Entered: {lat}</span>
+      <span>Longitude Entered: {long}</span>
+      <span>Array Size Entered: {size}</span>
       {isLoading && <span>Loading...</span>}
-      <span>Latitude Entered: {result}</span>
-      <span>Longitude Entered: {result1}</span>
-      <span>Array Size Entered: {result2}</span>
-      <span>Average Annual DNI: {inso}</span>
-      <span>Dataset Load: {load}</span>
+      {isLoading ? false : <span>Annual Daily Insolation Average of Location: {inso} kWh/m^2</span>}
+      {isLoading ? false : <span>Predicted Annual Generation: {pred} MWh</span>}
+      {isLoading ? false : <span>Dataset Load: {load}</span>}
     </div>
   );
 };
