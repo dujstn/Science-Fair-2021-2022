@@ -2,9 +2,6 @@ import pandas as pd
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.model_selection import train_test_split
 import pickle
-import os
-import sys
-os.chdir(sys.path[0])
 
 def process(lat, long, size, inso):
     stock_data = pd.read_csv("data/final_set.csv")
