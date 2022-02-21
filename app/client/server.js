@@ -1,17 +1,20 @@
-const express = require('express');
-const path = require('path');
+const express = require("express");
+const path = require("path");
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 
-const publicPath = path.join(__dirname, 'build');
-app.use(express.static(publicPath));
 
-app.get('*', (req, res) => {
-   res.sendFile(path.join(publicPath, 'index.html'));
+app.use(express.static(path.join(__dirname, "build")));
+
+const apiProxy = createProxyMiddleware("https://heliios-backend.herokuapp.com/", {
+    proxyReqPathResolver: req => url.parse(req.baseUrl).path
 });
+app.use("/*", apiProxy)
 
-app.listen(port, () => {
-   console.log(`Server is up on port ${port}!`);
-});
+// This route serves the React app
+app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, "build", "index.html")));
 
+app.listen(port, () => console.log(`Server hosting on port ${port}`));

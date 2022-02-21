@@ -2,6 +2,7 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
+  "main": "server.js",
   "proxy": "https://heliios-backend.herokuapp.com/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
@@ -15,7 +16,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "build-herok": "cd src && npm run build",
+    "build-herok": "npm run build",
     "install-client": "cd src && npm install",
     "heroku-postbuild": "npm run install-client && npm run build-herok",
     "build": "react-scripts build",
@@ -43,6 +44,7 @@
   },
   "devDependencies": {
     "express": "^4.17.3",
+    "http-proxy-middleware": "^2.0.3",
     "node": "^17.4.0"
   }
 }
