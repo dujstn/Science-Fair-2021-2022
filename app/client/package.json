@@ -14,12 +14,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "dev-start": "react-scripts start",
-    "start": "cd src && node index.js",
-    "build": "react-scripts build",
+    "start": "node server.js",
     "build-herok": "cd src && npm run build",
     "install-client": "cd src && npm install",
     "heroku-postbuild": "npm run install-client && npm run build-herok",
+    "build": "react-scripts build",
+    "dev-start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -42,6 +42,7 @@
     ]
   },
   "devDependencies": {
+    "express": "^4.17.3",
     "node": "^17.4.0"
   }
 }
