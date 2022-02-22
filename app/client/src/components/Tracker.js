@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { submit } from "./submit";
+import { submits } from "./submits";
 import { predicts } from "./predicts";
 
 const Tracker = () => {
@@ -20,7 +20,7 @@ const Tracker = () => {
       longitude: long,
       arrSize: size,
     };
-    const rawResult = await submit(object);
+    const rawResult = await submits(object);
     if (rawResult) {      
       setInso(rawResult.locInso);
       object.insolation = inso

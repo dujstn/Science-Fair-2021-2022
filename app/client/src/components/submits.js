@@ -1,4 +1,4 @@
-export const submit = async (data) => {
+export const submits = async (data) => {
 
     const requestOps = {
         method:"POST",
