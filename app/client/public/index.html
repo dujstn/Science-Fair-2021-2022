@@ -14,8 +14,18 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div class="loader"></div>
-    <div id="root"></div>
+    <div class="loader">
+      <h1 class="loading-title">Heliios is waking up...</h1>
+    </div>
+    <div id="root" class="content"></div>
+
+    <script>
+      $(window).on('load', function () {
+          $(".loader").fadeOut(200);
+          $(".content").fadeIn(200);
+        });
+    </script>
+
 
   </body>
 </html>

@@ -1,5 +1,6 @@
 body {
   font-family: Helvetica;
+  background-color: white;
 }
 
 .flex-container {
@@ -13,30 +14,11 @@ body {
 }
 
 .loader {
-  height: 10vh;
-  width: 10vw;
-  overflow: hidden;
-  background-color: #16191e;
-  position: absolute;
-}
-
-.loader > div {
-  height: 10px;
-  width: 10px;
-  border: 1.5px solid #45474b;
-  border-top-color: #2a88e6;
-  position: absolute;
-  margin: auto;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border-radius: 50%;
-  animation: spin 1.5s infinite linear;
-}
-
-@keyframes spin {
-  100% {
-    transform: rotate(360deg);
-  }
+  height: 200 vh;
+  width: 200 vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  line-height: 100vh;
 }
