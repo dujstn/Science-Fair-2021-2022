@@ -1,14 +1,11 @@
 from flask import Flask, request
 import requests
 import model
-from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-CORS(app)
 
 
 @app.route("/reqinso", methods=["POST"])
-@cross_origin
 def reqinso():
     data = request.get_json()
     lat = float(data["lat"])
@@ -34,7 +31,6 @@ def reqinso():
     }
 
 @app.route("/makepred", methods=["POST"])
-@cross_origin
 def makepred():
     data = request.get_json()
     lat = float(data["lat"])
@@ -47,13 +43,11 @@ def makepred():
     }
 
 @app.route("/test", methods=["POST"])
-@cross_origin
 def test():
     data = request.get_json()
     return data.text
 
 @app.route("/", methods=["GET"])
-@cross_origin
 def home():
     return "you have reached the home page. hi alex"
 
