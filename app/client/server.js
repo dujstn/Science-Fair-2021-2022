@@ -9,10 +9,17 @@ const port = process.env.PORT || 8080;
 
 app.use(express.static(path.join(__dirname, "build")));
 
-const apiProxy = createProxyMiddleware("https://heliios-backend.herokuapp.com/", {
-    proxyReqPathResolver: req => url.parse(req.baseUrl).path
-});
-app.use("/*", apiProxy)
+app.use('/', function(req, res) {
+    var url = "https://heliios-backend.herokuapp.com/"+ req.url;
+    var r = null;
+    if(req.method === 'POST') {
+       r = request.post({uri: url, json: req.body});
+    } else {
+       r = request(url);
+    }
+  
+    req.pipe(r).pipe(res);
+  });
 
 // This route serves the React app
 app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, "build", "index.html")));
