@@ -10,7 +10,7 @@ export const submit = async (data) => {
         })
     }
     try{    
-        const response = await fetch("https://heliios-backend.herokuapp.com/reqo", requestOps)
+        const response = await fetch("/reqinso", requestOps)
         const text = await response.json()
         return text
     }
