@@ -10,12 +10,20 @@ const port = process.env.PORT || 8080;
 
 app.use(express.static(path.join(__dirname, "build")));
 
-app.use('/', function(req, res) {
+app.use('/reqinso', function(req, res) {
    var url = "https://heliios-backend.herokuapp.com/"+ req.url;
    r = request.post({uri: url, json: req.body});
   
     req.pipe(r).pipe(res);
   });
+
+app.use('/makepred', function(req, res) {
+   var url = "https://heliios-backend.herokuapp.com/"+ req.url;
+   r = request.post({uri: url, json: req.body});
+  
+    req.pipe(r).pipe(res);
+  });
+
 
 
 app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, "build", "index.html")));
