@@ -7,7 +7,6 @@ const Tracker = () => {
   const [long, setLong] = useState();
   const [size, setSize] = useState(0.005);
   const [inso, setInso] = useState(0);
-  const [load, setLoad] = useState("Not Loaded");
   const [pred, setPred] = useState(0);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -27,14 +26,15 @@ const Tracker = () => {
 
       const response = await predicts(object);
       if (response) {
-        setLoad("Load success");
-        setPred(response.success);
+        setPred(response.success)
+        console.log("Success: ", response.success)
       }
     }
     setIsLoading(false);
   }
   return (
-    <div className="flex-container">
+    <div className="tracker-container">
+      <h1>Solar Tracker</h1>
       <input
         type="field"
         className="field"
@@ -66,7 +66,6 @@ const Tracker = () => {
       {isLoading && <span>Loading...</span>}
       {isLoading ? false : <span>Annual Daily Insolation Average of Location: {inso} kWh/m^2</span>}
       {isLoading ? false : <span>Predicted Annual Generation: {pred} MWh</span>}
-      {isLoading ? false : <span>Dataset Load: {load}</span>}
     </div>
   );
 };

@@ -1,16 +1,15 @@
-import {Link} from "react-router-dom"
+import logo from "./logo.png"
 
 const Home = () => {
   return (
-    <div>
-      <h1>Heliios</h1>
+    <div className="homediv">
+      <img src={logo} className="logo"/>
       <h2>Tracking Canadian Solar Power (with a pair of Is)</h2>
 
-      <nav>
-        <button type="button" class="block" onclick="window.location.href='https://heliios.herokuapp.com/tracker">Solar Tracker</button>
-        <button type="button" class="block">About</button>
-        <button type="button" class="block">Changelog</button>
-      </nav>
+      <a href="/tracker" className="homebuttons">Solar Tracker</a>
+      <a href="/about" className="homebuttons">About</a>
+      <a href="/changelog" className="homebuttons">Changelog</a>
+
     </div>
   );
 };
