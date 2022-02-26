@@ -20,10 +20,11 @@
     <div id="root" class="content"></div>
 
     <script>
-      $(window).on('load', function () {
-          $(".loader").fadeOut(1000);
-          $(".content").fadeIn(1000);
-        });
+      $(window).on('load', function () {  
+        $(".content").hide();
+        $(".loader").fadeOut(1000);
+        $(".content").show();
+      });
     </script>
 
 
