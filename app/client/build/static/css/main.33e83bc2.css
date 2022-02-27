@@ -1,0 +1,2 @@
+body{background-color:#fff;font-family:Bahnschrift}.tracker-container{display:flex;flex-direction:column;max-width:25%;text-align:center}.logo{height:auto;margin-top:100px;max-width:25%}.homebuttons{border:2px solid #000;border-radius:5px;color:#000;padding:10px}.homebuttons:link{text-decoration:none}.homebuttons:hover{background-color:#e8776f}.homebuttons+.homebuttons{margin-left:10px}.about-container,.changelog-container,.homediv{text-align:center}.tracker-container{margin:0 auto}
+/*# sourceMappingURL=main.33e83bc2.css.map*/
