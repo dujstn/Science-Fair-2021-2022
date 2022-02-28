@@ -1,12 +1,50 @@
 body {
-  font-family: Helvetica;
+  font-family: "Bahnschrift";
+  background-color: white;
 }
 
-.flex-container {
-  max-width: 500px;
+.tracker-container {
+  max-width: 25%;
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
-.field {
+.logo {
+  margin-top: 100px;
+  max-width: 25%;
+  height: auto;
+}
+
+.homebuttons {
+  border: 2px solid black;
+  border-radius: 5px;
+  color: black;
+  padding: 10px;
+}
+.homebuttons:link {
+  text-decoration: none;
+}
+.homebuttons:hover {
+  background-color: #e8776f;
+}
+
+.homebuttons + .homebuttons {
+  margin-left: 10px;
+}
+
+.homediv {
+  text-align: center;
+}
+
+.about-container {
+  text-align: center;
+}
+
+.changelog-container {
+  text-align: center;
+}
+
+.tracker-container {
+  margin: 0 auto;
 }

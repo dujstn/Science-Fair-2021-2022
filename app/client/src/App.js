@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
 import Home from "./components/Home"
 import Tracker from "./components/Tracker"
 import Changelog from "./components/Changelog"
+import About from "./components/About"
 
 function App() {
   return (
@@ -16,10 +17,6 @@ function App() {
     </Router>
     
   );
-}
-
-function About(){
-  return <h1>About</h1>
 }
 
 export default App;

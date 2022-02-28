@@ -1,25 +1,15 @@
-import {Link} from "react-router-dom"
+import logo from "./logo.png"
 
 const Home = () => {
   return (
-    <div>
-      <h1>Solar Project Something</h1>
-      <p>Sample Introduction</p>
-      <h2>Links</h2>
+    <div className="homediv">
+      <img src={logo} className="logo"/>
+      <h2>Tracking Canadian Solar Power (with a pair of Is)</h2>
 
-      <nav>
-        <ul>
-          <li>
-            <Link to="/tracker">Tracker</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/changelog">Changelog</Link>
-          </li>
-        </ul>
-      </nav>
+      <a href="/tracker" className="homebuttons">Solar Tracker</a>
+      <a href="/about" className="homebuttons">About</a>
+      <a href="/changelog" className="homebuttons">Changelog</a>
+
     </div>
   );
 };
