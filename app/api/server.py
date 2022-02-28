@@ -12,7 +12,7 @@ def reqinso():
     long = float(data["long"])
     size = float(data["size"])
 
-    url = "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=ALLSKY_SFC_SW_DNI&community=RE&longitude={}&latitude={}&format=JSON&start=2020&end=2020".format(
+    url = "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=ALLSKY_SFC_SW_DNI&community=RE&longitude={}&latitude={}&format=JSON&start=2010&end=2020".format(
         long,
         lat
     )
