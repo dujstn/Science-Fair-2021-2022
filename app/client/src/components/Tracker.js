@@ -11,7 +11,6 @@ const Tracker = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-
   async function submitData() {
     setIsLoading(true);
     const object = {
@@ -20,14 +19,14 @@ const Tracker = () => {
       arrSize: size,
     };
     const rawResult = await submits(object);
-    if (rawResult) {      
-      setInso(rawResult.locInso);
-      object.insolation = inso
+    if (rawResult) {
+      setInso(rawResult.locInso.toFixed(3));
+      object.insolation = inso;
 
       const response = await predicts(object);
       if (response) {
-        setPred(response.success)
-        console.log("Success: ", response.success)
+        setPred(response.success.toFixed(3));
+        console.log("Success: ", response.success);
       }
     }
     setIsLoading(false);
@@ -36,14 +35,16 @@ const Tracker = () => {
     <div className="tracker-container">
       <h1>Solar Tracker</h1>
       <input
-        type="field"
+        type="number"
         className="field"
+        id = "latfield"
         placeholder="Enter latitude (-90 to 90)"
         onChange={(update) => setLat(update.target.value)}
       />
       <input
-        type="field"
+        type="number"
         className="field"
+        id="longfield"
         placeholder="Enter longitude (-180 to 180)"
         onChange={(update) => setLong(update.target.value)}
       />
@@ -56,6 +57,8 @@ const Tracker = () => {
       <button
         onClick={() => {
           submitData();
+          document.querySelector('#latfield').value = undefined;
+          document.querySelector('#longfield').value = undefined;
         }}
       >
         <a>Submit</a>
@@ -64,7 +67,11 @@ const Tracker = () => {
       <span>Longitude Entered: {long}</span>
       <span>Array Size Entered: {size}</span>
       {isLoading && <span>Loading...</span>}
-      {isLoading ? false : <span>Annual Daily Insolation Average of Location: {inso} kWh/m^2</span>}
+      {isLoading ? (
+        false
+      ) : (
+        <span>Annual Daily Insolation Average of Location: {inso} kWh/m^2</span>
+      )}
       {isLoading ? false : <span>Predicted Annual Generation: {pred} MWh</span>}
     </div>
   );
