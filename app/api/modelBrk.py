@@ -3,7 +3,7 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn.model_selection import train_test_split
 import pickle
 
-def process(lat, long, size, inso):
+def process(lat, long, size, inso, prod):
     stock_data = pd.read_csv("data/final_set.csv")
     data = []
     types = {
@@ -37,6 +37,6 @@ def process(lat, long, size, inso):
     model.fit(feats_train, labels_train)
     pickle.dump(model, open("modelStateBrk.pkl", "wb"))
     loaded_model = pickle.load(open("modelStateBrk.pkl", 'rb'))
-    prediction = loaded_model.predict(pd.DataFrame([[lat, long, size, inso]]))
+    prediction = loaded_model.predict(pd.DataFrame([[lat, long, size, inso, prod]]))
 
     return prediction[0][0]

@@ -21,6 +21,13 @@ app.post("/makepred", function (req, res) {
   req.pipe(r).pipe(res);
 });
 
+app.post("/makepred-brk", function (req, res) {
+  var url = "https://heliios-backend.herokuapp.com/" + req.url;
+  r = request.post({ uri: url, json: req.body });
+
+  req.pipe(r).pipe(res);
+});
+
 app.get("*", (req, res) =>
   res.sendFile(path.resolve(__dirname, "build", "index.html"))
 );
