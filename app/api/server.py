@@ -1,6 +1,7 @@
 from flask import Flask, request
 import requests
 import model
+import modelBrk
 
 app = Flask(__name__)
 
@@ -40,6 +41,19 @@ def makepred():
 
     return {
         "success": model.process(lat, long, size, inso)
+    }
+
+@app.route("/makepred-brk", methods=["POST"])
+def predbrk():
+    data = request.get_json()
+    lat = float(data["lat"])
+    long = float(data["long"])
+    size = float(data["size"])
+    inso = float(data["inso"])
+    prod = float(data["prod"])
+
+    return{
+        "success": modelBrk.process(lat, long, size, inso, prod)
     }
 
 @app.route("/", methods=["GET"])

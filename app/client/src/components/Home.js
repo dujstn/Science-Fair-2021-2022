@@ -6,7 +6,8 @@ const Home = () => {
       <img src={logo} className="logo"/>
       <h2>Tracking Canadian Solar Power (with a pair of Is)</h2>
 
-      <a href="/tracker" className="homebuttons">Solar Tracker</a>
+      <a href="/tracker" className="homebuttons">Solar Tracker - Power</a>
+      <a href="/tracker-brk" className="homebuttons">Solar Tracker - Cost</a>
       <a href="/about" className="homebuttons">About</a>
       <a href="/changelog" className="homebuttons">Changelog</a>
 
