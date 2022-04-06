@@ -75,7 +75,7 @@ const Tracker = () => {
       <span>Latitude Entered: {lat}</span>
       <span>Longitude Entered: {long}</span>
       <span>Array Size Entered: {size}</span>
-      <span>Array Generation total: {prod}</span>
+      <span>Array Generation Total: {prod}</span>
       {isLoading && <span>Loading...</span>}
       {isLoading ? (
         false
@@ -83,7 +83,7 @@ const Tracker = () => {
         <span>Annual Daily Insolation Average of Location: {inso} kWh/m^2</span>
       )}
       {isLoading ? false : <span>Predicted Breakeven Price: {pred} $/MWh</span>}
-    </div>
+      </div>
   );
 };
 

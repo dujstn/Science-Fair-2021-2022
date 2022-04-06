@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <div className="homediv">
       <img src={logo} className="logo"/>
-      <h2>Tracking Canadian Solar Power (with a pair of Is)</h2>
+      <h2 className="homeTitle">Tracking Canadian Solar Power (with a pair of Is)</h2>
 
       <a href="/tracker" className="homebuttons">Solar Tracker - Power</a>
       <a href="/tracker-brk" className="homebuttons">Solar Tracker - Cost</a>
