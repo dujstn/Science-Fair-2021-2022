@@ -15,6 +15,9 @@ const About = () => {
         offered by the majority of similar prospecting tools found online,
         encouraging contribution towards accelerating the growth of the Canadian
         solar power industry.
+        <br /><br />
+        Created by Justin Du<br />
+        David Thompson Secondary School
       </p>
     </div>
   );
