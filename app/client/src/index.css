@@ -55,10 +55,31 @@ body {
   text-align: center;
 }
 
-.results{
+span, input, select{
   margin-top: 10px;
 }
 
 .footer{
   text-align: center;
+}
+
+.submit-button{
+  margin-top: 10px;
+  font-size: 28px;
+  border: none;
+  border-radius: 2px;
+}
+
+.submit-button:hover{
+  background-color: #e8776f;
+}
+
+input, select{
+  border: none;
+  background-color: rgb(244, 244, 244);
+}
+
+input:focus{
+  border: none;
+  background-color:rgb(157, 223, 250);
 }

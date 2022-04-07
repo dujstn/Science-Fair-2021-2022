@@ -55,6 +55,7 @@ const Tracker = () => {
       </select>
 
       <button
+      className="submit-button"
         onClick={() => {
           submitData();
           document.querySelector('#latfield').value = undefined;
